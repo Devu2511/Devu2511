@@ -1,5 +1,5 @@
 const Product = require('../models/product');
-
+const Address=require('../models/address');
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
     pageTitle: 'Add Product',
@@ -30,6 +30,19 @@ exports.postAddProduct = (req, res, next) => {
     .catch(err => {
       console.log(err);
     });
+    Address.findOne().then(address=>{
+      if(!address){
+        const address =new Address({
+          City:'Gwalior',
+          State:'MP',
+          Pincode:'470001'
+        })
+        address.save();
+      }
+      else {
+        console.log(address);
+      }
+    })
 };
 
 exports.getEditProduct = (req, res, next) => {
@@ -71,10 +84,12 @@ exports.postEditProduct = (req, res, next) => {
     .then(result => {
       console.log('UPDATED PRODUCT!');
       res.redirect('/admin/products');
+      
     })
     .catch(err => console.log(err));
-};
 
+  
+};
 exports.getProducts = (req, res, next) => {
   Product.find()
     // .select('title price -_id')

@@ -1,5 +1,5 @@
 const path = require('path');
-const Address=require('./models/address');
+// const Address=require('./models/address');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -48,19 +48,19 @@ mongoose
         user.save();
       }
     });
-    Address.findOne().then(address=>{
-      if(!address){
-        const address =new Address({
-          City:'Chhatarpur',
-          State:'MP',
-          Pincode:'471001'
-        })
-        address.save();
-      }
-      else {
-        console.log(address);
-      }
-    })
+    // Address.findOne().then(address=>{
+    //   if(!address){
+    //     const address =new Address({
+    //       City:'Chhatarpur',
+    //       State:'MP',
+    //       Pincode:'471001'
+    //     })
+    //     address.save();
+    //   }
+    //   else {
+    //     console.log(address);
+    //   }
+    // })
     app.listen(3000);
   })
   .catch(err => {

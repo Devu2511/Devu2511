@@ -11,11 +11,11 @@ const orderSchema = new Schema({
     }
   ],
   address:{
-    street:{
-      type: String
-      //required:true
-    }
+    City: {type:String},
+    State:{type:String},
+    Pincode:{type:String}
   },
+  
   user: {
     name: {
       type: String,

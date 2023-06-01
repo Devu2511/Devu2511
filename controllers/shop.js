@@ -1,5 +1,6 @@
 const Product = require('../models/product');
 const Order = require('../models/order');
+const Address=require('../models/address');
 
 exports.getProducts = (req, res, next) => {
   Product.find()
@@ -67,8 +68,18 @@ exports.postCart = (req, res, next) => {
     .then(result => {
       console.log(result);
       res.redirect('/cart');
+      Address.findOne().then(address=>{
+        
+        const addr =new Address({
+          City:'Gwalior',
+          State:'MP',
+          Pincode:'470001'
+        })
+        addr.save();
+        
+      })
     });
-};
+    };
 
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
@@ -88,13 +99,14 @@ exports.postOrder = (req, res, next) => {
       const products = user.cart.items.map(i => {
         return { quantity: i.quantity, product: { ...i.productId._doc } };
       });
+      
       const order = new Order({
         user: {
           name: req.user.name,
-          // address: req.address,
           userId: req.user
         },
-        products: products
+        products: products,
+        
       });
       return order.save();
     })

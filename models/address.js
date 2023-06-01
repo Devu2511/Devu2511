@@ -19,10 +19,4 @@ const addressSchema = new Schema({
     }
 });
 
-// const divyansh=new addressSchema({
-//     City: 'Chhatarpur',
-//     State: 'MP',
-//     Pincode: '471001'
-// });
-// divyansh.save();
 module.exports=mongoose.model('address',addressSchema);
