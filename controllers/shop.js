@@ -1,6 +1,5 @@
 const Product = require('../models/product');
 const Order = require('../models/order');
-const Address=require('../models/address');
 
 exports.getProducts = (req, res, next) => {
   Product.find()
@@ -68,16 +67,7 @@ exports.postCart = (req, res, next) => {
     .then(result => {
       console.log(result);
       res.redirect('/cart');
-      Address.findOne().then(address=>{
-        
-        const addr =new Address({
-          City:'Gwalior',
-          State:'MP',
-          Pincode:'470001'
-        })
-        addr.save();
-        
-      })
+
     });
     };
 
