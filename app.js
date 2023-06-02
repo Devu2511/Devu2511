@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  User.findById('6476f7830fd36c27b412b750')
+  User.findById('6479800d95c21253889955bd')
     .then(user => {
       req.user = user;
       next();
@@ -33,7 +33,7 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 mongoose
   .connect(
-    'mongodb+srv://Luffy:Luffy2511@cluster1.wmq6bgq.mongodb.net/?retryWrites=true&w=majority',{ useNewUrlParser: true },{ useUnifiedTopology: true }
+    'mongodb+srv://Luffy:Luffy2511@cluster0.ye9wxcp.mongodb.net/?retryWrites=true&w=majority',{ useNewUrlParser: true },{ useUnifiedTopology: true }
     )
   .then(result => {
     User.findOne().then(user => {
